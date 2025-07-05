@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liore Loid | T-Shirts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --yellow-primary: #FFD000;
+      --yellow-accent: #FFB700;
+      --gray-dark: #444342;
+      --gray-base: #2A2929;
+      --black: #0F0F0F;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 2rem 4vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--yellow-primary);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--white);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: var(--yellow-accent);
+    }
+
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(145deg, #1a1a1a, var(--gray-base));
+      position: relative;
+    }
+
+    .product-center {
+      width: 320px;
+      margin: 0 2rem;
+      transition: transform 0.5s ease;
+    }
+
+    .product-side {
+      width: 200px;
+      opacity: 0.7;
+      transform: scale(0.95);
+      transition: transform 0.5s ease;
+    }
+
+    .product-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+    }
+
+    .product-title {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 1.2rem;
+    }
+
+    .price {
+      text-align: center;
+      font-size: 1rem;
+      margin-top: 0.25rem;
+      color: var(--yellow-primary);
+    }
+
+    .arrows {
+      position: absolute;
+      bottom: 2rem;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 2rem;
+    }
+
+    .arrow {
+      background: var(--gray-dark);
+      padding: 0.75rem 1rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .arrow:hover {
+      background: var(--yellow-accent);
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+      .product-wrapper {
+        flex-direction: column;
+      }
+      .product-side {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">Liore Loid</div>
+    <nav>
+      <ul>
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">Printed</a></li>
+        <li><a href="#">Plain</a></li>
+        <li><a href="#">Custom</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="arrows">
+      <div class="arrow">&#8592;</div>
+      <div class="arrow">&#8594;</div>
+    </div>
+    <div class="product-wrapper">
+      <img src="3a3c2c27e129a271780a868e01fe2a21-removebg-preview.png" class="product-side" alt="Side product">
+      <img src="White_T-Shirt-removebg-preview.png" class="product-center" alt="Main product">
+      <img src="3a3c2c27e129a271780a868e01fe2a21-removebg-preview.png" class="product-side" alt="Side product">
+    </div>
+  </section>
+
+  <div class="product-title">CORE TEE</div>
+  <div class="price">₹799</div>
+</body>
+
+</html>
