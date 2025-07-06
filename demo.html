@@ -29,7 +29,6 @@
     }
 
     header {
-      position: relative;
       padding: 2rem 4vw;
       width: 100vw;
       display: flex;
@@ -41,7 +40,6 @@
       font-weight: 700;
       font-size: 1.5rem;
       color: var(--yellow-primary);
-      z-index: 2;
     }
 
     nav {
@@ -54,88 +52,44 @@
       padding: 0.75rem 2rem;
     }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
+
+
+    .carousel-images img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      max-height: 300px;
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      z-index: 1;
+      pointer-events: none;
     }
 
-    nav ul li a {
-      text-decoration: none;
-      color: var(--white);
-      font-weight: 500;
-      transition: color 0.3s;
+    .carousel-images img.center {
+      transform: translate(-50%, -50%) scale(1.1);
+      opacity: 1;
+      z-index: 3;
     }
 
-    nav ul li a:hover {
-      color: var(--yellow-accent);
+    .carousel-images img.left {
+      transform: translate(-150%, -50%) scale(0.9);
+      opacity: 0.6;
+      z-index: 2;
     }
 
-    .hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 4rem 2rem;
-      background: linear-gradient(145deg, #1a1a1a, var(--gray-base));
-      position: relative;
-      overflow: hidden;
+    .carousel-images img.right {
+      transform: translate(50%, -50%) scale(0.9);
+      opacity: 0.6;
+      z-index: 2;
     }
-
-    .carousel-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 400px;
-      width: 100%;
-      max-width: 1000px;
-      margin-bottom: 2rem;
-    }
-
-.carousel-images {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.carousel-images img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.8);
-  transition: transform 0.6s ease, opacity 0.6s ease;
-  max-height: 300px;
-  opacity: 0;
-  z-index: 1;
-}
-
-.carousel-images img.left {
-  transform: translate(-150%, -50%) scale(0.9);
-  opacity: 0.6;
-  z-index: 2;
-}
-
-.carousel-images img.center {
-  transform: translate(-50%, -50%) scale(1.1);
-  opacity: 1;
-  z-index: 3;
-}
-
-.carousel-images img.right {
-  transform: translate(50%, -50%) scale(0.9);
-  opacity: 0.6;
-  z-index: 2;
-}
-
 
     .arrows {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
       display: flex;
       justify-content: space-between;
-      padding: 0 2rem;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
     .arrow {
@@ -145,7 +99,6 @@
       cursor: pointer;
       transition: background 0.3s;
       font-size: 1.5rem;
-      z-index: 5;
     }
 
     .arrow:hover {
@@ -153,13 +106,11 @@
     }
 
     .product-title {
-      text-align: center;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       font-size: 1.4rem;
     }
 
     .price {
-      text-align: center;
       font-size: 1.1rem;
       margin-top: 0.25rem;
       color: var(--yellow-primary);
@@ -170,17 +121,13 @@
         display: none;
       }
 
-      .carousel-wrapper {
-        flex-direction: column;
-      }
-
       .carousel-images img.left,
       .carousel-images img.right {
         display: none;
       }
 
       .carousel-images img.center {
-        transform: scale(1);
+        transform: translate(-50%, -50%) scale(1);
       }
     }
   </style>
@@ -201,17 +148,19 @@
   <section class="hero">
     <div class="carousel-wrapper">
       <div class="carousel-images" id="carousel">
-        <img src="3a3c2c27e129a271780a868e01fe2a21-removebg-preview.png" alt="Product 1">
+<img src="https://via.placeholder.com/300x400?text=T-Shirt">
         <img src="White_T-Shirt-removebg-preview.png" alt="Product 2">
         <img src="3a3c2c27e129a271780a868e01fe2a21-removebg-preview.png" alt="Product 3">
         <img src="White_T-Shirt-removebg-preview.png" alt="Product 4">
         <img src="3a3c2c27e129a271780a868e01fe2a21-removebg-preview.png" alt="Product 5">
       </div>
-      <div class="arrows">
-        <div class="arrow" id="prev">&#8592;</div>
-        <div class="arrow" id="next">&#8594;</div>
-      </div>
     </div>
+
+    <div class="arrows">
+      <div class="arrow" id="prev">&#8592;</div>
+      <div class="arrow" id="next">&#8594;</div>
+    </div>
+
     <div class="product-title" id="product-title">CORE TEE</div>
     <div class="price" id="product-price">₹799</div>
   </section>
@@ -231,34 +180,24 @@
 
     let current = 0;
 
-function updateCarousel() {
-  images.forEach((img, i) => {
-    img.classList.remove('left', 'center', 'right');
-    img.style.opacity = 0;
-    img.style.zIndex = 1;
-    img.style.transform = 'scale(0.8)';
-  });
+    function updateCarousel() {
+      images.forEach((img, i) => {
+        img.classList.remove('left', 'center', 'right');
+        img.style.opacity = 0;
+        img.style.zIndex = 1;
+      });
 
-  const total = images.length;
-  const left = (current - 1 + total) % total;
-  const right = (current + 1) % total;
+      const total = images.length;
+      const left = (current - 1 + total) % total;
+      const right = (current + 1) % total;
 
-  images[left].classList.add('left');
-  images[left].style.opacity = 0.6;
-  images[left].style.zIndex = 2;
+      images[left].classList.add('left');
+      images[current].classList.add('center');
+      images[right].classList.add('right');
 
-  images[current].classList.add('center');
-  images[current].style.opacity = 1;
-  images[current].style.zIndex = 3;
-
-  images[right].classList.add('right');
-  images[right].style.opacity = 0.6;
-  images[right].style.zIndex = 2;
-
-  productTitle.textContent = productData[current].title;
-  productPrice.textContent = productData[current].price;
-}
-
+      productTitle.textContent = productData[current].title;
+      productPrice.textContent = productData[current].price;
+    }
 
     document.getElementById('next').addEventListener('click', () => {
       current = (current + 1) % images.length;
