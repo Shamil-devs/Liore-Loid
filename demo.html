@@ -52,7 +52,42 @@
       padding: 0.75rem 2rem;
     }
 
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
 
+    nav ul li a {
+      text-decoration: none;
+      color: var(--white);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: var(--yellow-accent);
+    }
+
+    .hero {
+      padding: 4rem 2rem;
+      background: linear-gradient(145deg, #1a1a1a, var(--gray-base));
+      text-align: center;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .carousel-images {
+      position: relative;
+      height: 100%;
+    }
 
     .carousel-images img {
       position: absolute;
